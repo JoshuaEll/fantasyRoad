@@ -4,9 +4,9 @@ server:
     include-binding-error: always
 spring:
   datasource:
-    password:
-      url: jdbc:postgresql://localhost:5432/penandpaper
-      username:
+      url: ${db_url}
+      username: ${db_username}
+      password: ${db_password}
   jpa:
     hibernate:
       ddl-auto: create-drop
