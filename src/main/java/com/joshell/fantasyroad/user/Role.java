@@ -1,4 +1,6 @@
 package com.joshell.fantasyroad.user;
 
-public class UserService {
+public enum Role {
+    USER,
+    ADMIN
 }
