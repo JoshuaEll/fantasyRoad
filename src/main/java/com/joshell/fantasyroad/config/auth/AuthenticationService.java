@@ -33,13 +33,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        try {
-            // TODO Fix the error here
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())); //SOME KIND OF ISSUE HERE
-        } catch (Exception e){
-            System.out.println("This is the email");
-            System.out.println(request.getEmail());
-        }
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
 
 
         var user = repository.findByEmail(request.getEmail())
