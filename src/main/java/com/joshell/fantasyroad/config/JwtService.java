@@ -20,7 +20,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "UsEI+dNQYHfDChIEWNE2XS87Fd/P3eAOL6iJ/+lsLQXRLdH4r2BwRFAspzKTplMJ";
+    private static final String SECRET_KEY = "Secret here";
 
     /**
      * Extracts the user email from the token
