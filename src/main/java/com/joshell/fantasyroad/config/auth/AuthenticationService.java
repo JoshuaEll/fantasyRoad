@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Handles both registration and login
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -18,6 +21,13 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+
+
+    /**
+     * Registers new users
+     * @param request
+     * @return a jwt token with the users(subjects) info
+     */
     public AuthenticationResponse register(RegisterRequest request) {
         var user = User.builder()
                 .userName(request.getUserName())
@@ -32,11 +42,14 @@ public class AuthenticationService {
                 .build();
     }
 
+    /**
+     * Checks if users trying to login are allowed to
+     * @param request
+     * @return json web token with the user info and expr date
+     */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-
-
 
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found")); // See how to correctly handle this
