@@ -1,5 +1,6 @@
 package com.joshell.fantasyroad.user;
 
+import com.joshell.fantasyroad.caractersheets.CharacterSheets;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,11 @@ public class User implements UserDetails {
     private UserChatRole userRole;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sheetId", referencedColumnName = "id")
+    private CharacterSheets characterSheets;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
